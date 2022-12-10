@@ -1,0 +1,20 @@
+version: "2.0"
+
+networks:
+  back_net:
+    driver: bridge
+
+services:
+  asset_manager:
+    image: asset-manager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: asset-manager
+    environment:      
+      - RUNNING_ENV=local
+      - TZ=Asia/Seoul
+    ports:
+      - "8080:8000"
+    networks:
+      - back_net
